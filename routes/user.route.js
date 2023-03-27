@@ -7,9 +7,7 @@ const UserModel = require('../model/user.model')
 const userRoute = express.Router()
 
 
-userRoute.get("/",async(req,res)=>{
 
-})
 userRoute.post("/register",async(req,res)=>{
     const {email} =req.body
     
@@ -41,7 +39,7 @@ userRoute.post("/login",async(req,res)=>{
     
     const {email,password} = req.body
     try {
-        const isPresent= await UserModel.findOne({email:email})  
+        const isPresent= await UserModel.find({email:email})  
         if(isPresent){
                const decoded = await bcrypt.compare(password,isPresent.password)
                if(decoded){
